@@ -293,6 +293,10 @@ function createViewPostsButton(username, actionBtn) {
       link.setAttribute('style', nativeStyle);
     }
 
+    // Force margin-right to 8px and margin-left to 0px inline with !important to override native stylesheet classes
+    link.style.setProperty('margin-left', '0px', 'important');
+    link.style.setProperty('margin-right', '8px', 'important');
+
     // Determine if the native button is filled or outline and set colors for custom hover
     try {
       const computedStyle = window.getComputedStyle(actionBtn);
@@ -395,6 +399,9 @@ function injectViewPostsButton() {
   const actionBar = actionBtn.parentElement;
   if (!actionBar) return;
 
+  // Ensure the action bar expands to fill the horizontal line when wrapping
+  actionBar.style.setProperty('flex-grow', '1', 'important');
+
   const expectedHref = `${window.location.origin}/search?q=from%3A${username}`;
   let btn = actionBar.querySelector('.y-view-posts-btn');
 
@@ -416,6 +423,43 @@ function injectViewPostsButton() {
     // Construct and prepend cloned native button directly to the action bar
     const newBtn = createViewPostsButton(username, actionBtn);
     actionBar.insertBefore(newBtn, actionBar.firstChild);
+  }
+
+  // Adjust margins and flex settings dynamically based on whether the action bar wrapped
+  adjustLayoutForWrapping();
+  for (const delay of [50, 150, 300, 600]) {
+    setTimeout(adjustLayoutForWrapping, delay);
+  }
+}
+
+// Adjust layout based on action bar wrapping state
+function adjustLayoutForWrapping() {
+  const btn = document.querySelector('.y-view-posts-btn');
+  if (!btn) return;
+  const actionBar = btn.parentElement;
+  if (!actionBar) return;
+
+  try {
+    const parentEl = actionBar.parentElement;
+    if (parentEl) {
+      const parentRect = parentEl.getBoundingClientRect();
+      const actionRect = actionBar.getBoundingClientRect();
+      
+      // If the top of the action bar is significantly below the parent top (e.g. > 30px), it wrapped
+      const isWrapped = actionRect.top > parentRect.top + 30;
+      
+      if (isWrapped) {
+        actionBar.style.setProperty('flex-grow', '1', 'important');
+        actionBar.style.setProperty('width', '100%', 'important');
+        btn.style.setProperty('margin-right', 'auto', 'important');
+      } else {
+        actionBar.style.removeProperty('flex-grow');
+        actionBar.style.removeProperty('width');
+        btn.style.setProperty('margin-right', '8px', 'important');
+      }
+    }
+  } catch (e) {
+    btn.style.setProperty('margin-right', '8px', 'important');
   }
 }
 
@@ -471,3 +515,6 @@ function startObserver() {
 setInterval(() => {
   debouncedScan();
 }, 1500);
+
+// Adjust layout on window resizing (to handle wrap transitions)
+window.addEventListener('resize', adjustLayoutForWrapping);
