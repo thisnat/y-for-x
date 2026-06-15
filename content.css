@@ -1,0 +1,74 @@
+/* Overrides for the cloned native classes */
+.y-quotes-btn {
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+/* Default color for the Quotes button elements */
+.y-quotes-inner-div {
+  color: rgb(83, 100, 113) !important;
+}
+
+.y-quotes-text-container {
+  margin-left: 4px !important; /* Margin between the icon container and the text container */
+}
+
+.y-quotes-text {
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: rgb(83, 100, 113) !important;
+  font-size: 13px;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.y-quotes-svg {
+  color: rgb(83, 100, 113) !important;
+  fill: currentColor !important;
+  width: 18.75px !important;
+  height: 18.75px !important;
+  transition: color 0.2s ease, fill 0.2s ease;
+}
+
+/* Hover overrides: premium cyan */
+.y-quotes-btn:hover .y-quotes-inner-div {
+  color: rgb(0, 186, 186) !important;
+}
+
+.y-quotes-btn:hover .y-quotes-text {
+  color: rgb(0, 186, 186) !important;
+}
+
+.y-quotes-btn:hover .y-quotes-svg {
+  color: rgb(0, 186, 186) !important;
+  fill: rgb(0, 186, 186) !important;
+}
+
+/* Hover backdrop background color override */
+.y-quotes-btn:hover .y-quotes-backdrop {
+  background-color: rgba(0, 186, 186, 0.1) !important;
+  opacity: 1 !important; /* Force the backdrop overlay to display */
+}
+
+/* Responsive adjustment: hide "Quotes" label on narrower viewports to prevent wrapping */
+@media (max-width: 688px) {
+  .y-quotes-text-container {
+    display: none !important;
+  }
+}
+
+/* --- View User's Posts Button (Profile Page in-row) --- */
+.y-view-posts-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  
+  /* Enforce auto width, padding, and spacing next to Follow button */
+  width: auto !important;
+  max-width: none !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  margin-right: 8px !important;
+}

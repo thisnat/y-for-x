@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Y for X Settings</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <span class="logo-serif">Y</span>
+        <span class="logo-title">for X</span>
+      </div>
+      <div class="header-desc">Extension Preferences</div>
+    </header>
+
+    <main>
+      <!-- Feature 1: Show Quotes Link -->
+      <div class="ios-group">
+        <div class="ios-row">
+          <div class="ios-label">
+            <h3>Show Quotes Link</h3>
+            <p>Display quote shortcut link on posts</p>
+          </div>
+          <div class="ios-control-wrapper">
+            <button class="ios-config-btn" id="quotesConfigBtn" aria-label="Configure quotes link">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <label class="ios-switch">
+              <input type="checkbox" id="showQuotesBtn" checked>
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="config-panel" id="quotesConfigPanel">
+          <div class="panel-label">Open Quotes In</div>
+          <div class="segmented-control">
+            <input type="radio" id="quotesOpenNewTab" name="quotesOpenType" value="newTab" checked>
+            <label for="quotesOpenNewTab">New Tab</label>
+
+            <input type="radio" id="quotesOpenSameTab" name="quotesOpenType" value="sameTab">
+            <label for="quotesOpenSameTab">Same Tab</label>
+
+            <div class="glider"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: View User's Posts -->
+      <div class="ios-group">
+        <div class="ios-row">
+          <div class="ios-label">
+            <h3>View User's Posts</h3>
+            <p>Search shortcut on profile headers</p>
+          </div>
+          <div class="ios-control-wrapper">
+            <button class="ios-config-btn" id="viewPostsConfigBtn" aria-label="Configure profile search">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <label class="ios-switch">
+              <input type="checkbox" id="viewPostsBtn" checked>
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="config-panel" id="viewPostsConfigPanel">
+          <div class="panel-label">Open Posts In</div>
+          <div class="segmented-control">
+            <input type="radio" id="viewPostsOpenNewTab" name="viewPostsOpenType" value="newTab" checked>
+            <label for="viewPostsOpenNewTab">New Tab</label>
+
+            <input type="radio" id="viewPostsOpenSameTab" name="viewPostsOpenType" value="sameTab">
+            <label for="viewPostsOpenSameTab">Same Tab</label>
+
+            <div class="glider"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="version-tag">Version 1.0.0</div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
