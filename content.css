@@ -71,4 +71,17 @@
   padding-left: 16px !important;
   padding-right: 16px !important;
   margin-right: 8px !important;
+
+  /* Smooth transition for hover effects */
+  transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+/* Hover style for outline buttons (e.g. Edit Profile, DM) */
+.y-view-posts-btn.y-btn-outline:hover {
+  background-color: color-mix(in srgb, var(--native-text-color, currentColor) 10%, transparent) !important;
+}
+
+/* Hover style for filled buttons (e.g. Follow) */
+.y-view-posts-btn.y-btn-filled:hover {
+  background-color: color-mix(in srgb, var(--native-text-color, currentColor) 10%, var(--native-bg-color, rgb(15, 20, 25))) !important;
 }

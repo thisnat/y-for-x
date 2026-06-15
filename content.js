@@ -293,6 +293,28 @@ function createViewPostsButton(username, actionBtn) {
       link.setAttribute('style', nativeStyle);
     }
 
+    // Determine if the native button is filled or outline and set colors for custom hover
+    try {
+      const computedStyle = window.getComputedStyle(actionBtn);
+      const bgColor = computedStyle.backgroundColor;
+      const isOutline = !bgColor || bgColor === 'transparent' || bgColor === 'rgba(0, 0, 0, 0)' || bgColor.replace(/\s/g, '') === 'rgba(0,0,0,0)';
+      
+      const nativeInnerDiv = actionBtn.querySelector('div[dir="ltr"]');
+      const textEl = actionBtn.querySelector('span') || nativeInnerDiv || actionBtn;
+      const textColor = window.getComputedStyle(textEl).color;
+      
+      link.style.setProperty('--native-text-color', textColor);
+      
+      if (isOutline) {
+        link.classList.add('y-btn-outline');
+      } else {
+        link.classList.add('y-btn-filled');
+        link.style.setProperty('--native-bg-color', bgColor);
+      }
+    } catch (e) {
+      link.classList.add('y-btn-outline');
+    }
+
     // Clone native inner layout div
     const nativeInnerDiv = actionBtn.querySelector('div[dir="ltr"]');
     if (nativeInnerDiv) {
